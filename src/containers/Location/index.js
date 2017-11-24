@@ -19,17 +19,18 @@ class Location extends Component {
 	    	region: {
 	    		latitude: 32.899293,
 	    		longitude: -96.729257,
-	    		latitudeDelta: 3,
-	    		longitudeDelta: 3
+	    		latitudeDelta: 1,
+	    		longitudeDelta: 0.3
 	    	}
 	    };
+      this.map = null;
  	}
 
   	componentWillReceiveProps(nextProps) {
   		// Move to the center of the points
   		if (nextProps.favorite.get('data').length !== this.props.favorite.get('data').length) {
   			// restrict to 10 markers
-  			let array = nextProps.favorite.get('data').slice(0, 9);
+  			let array = nextProps.favorite.get('data');
   			let latitude, longitude, latitudeDelta, longitudeDelta;
   			let latMax = -100, latMin = 100, lonMax = -100, lonMin = 100;
   			array.map(data => {
@@ -50,19 +51,20 @@ class Location extends Component {
   			longitude = (lonMax + lonMin) / 2;
   			latitudeDelta = (latMax - latitude) * 2;
   			longitudeDelta = (lonMax - longitude) * 2;
-  			this.setState({ region: { latitude, longitude, latitudeDelta, longitudeDelta }});
+        this.map.map.setNativeProps({ region: { latitude, longitude, latitudeDelta, longitudeDelta }});
   		}
   	}
 
   	render() {
   		// restrict to 10 markers
-  		const mapData = this.props.favorite.get('data').slice(0, 9);
+  		const mapData = this.props.favorite.get('data');
 		return (
 	      	<View style={styles.container}>
 		      	<MapView
 		      		provider={MapView.PROVIDER_GOOGLE}
 			      	style={styles.map}
-			      	region={this.state.region}
+			      	initRegion={this.state.region}
+              ref={ref => {this.map = ref}}
 		      	>
 			      	{
 			      		mapData.map((data, index) => (
