@@ -16,7 +16,8 @@
     "redux-action-buffer": "^1.1.0",
     "redux-immutable": "^4.0.0",
     "redux-persist-immutable": "^4.3.1",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "supercluster": "^3.0.1"
   },
   "devDependencies": {
     "babel-jest": "21.2.0",

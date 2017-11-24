@@ -9,14 +9,14 @@ import * as FavoriteActions from "../../actions/favorite";
 import * as RootActions from "../../actions/root";
 
 export function* getList() {
-	try {
-		const list = yield call(Api.getFavorites, {});
-		yield put(FavoriteActions.getFavoriteSuccess(list));
-	} catch (error) {
-		yield put(FavoriteActions.getFavoriteError(error));
-	}
+    try {
+        const list = yield call(Api.getFavorites, {});
+        yield put(FavoriteActions.getFavoriteSuccess(list));
+    } catch (error) {
+        yield put(FavoriteActions.getFavoriteError(error));
+    }
 }
 
 export function* favoriteFlow() {
-	yield call(getList);
+    yield call(getList);
 }

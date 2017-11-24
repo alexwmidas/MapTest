@@ -5,8 +5,8 @@
  */
 
 /* Import node modules */
-import React, { Component } from 'react'
-import { Provider } from 'react-redux'
+import React, {Component} from 'react'
+import {Provider} from 'react-redux'
 
 /* Import other dependencies */
 import configureStore from './store/configureStore'
@@ -16,11 +16,11 @@ const store = configureStore()
 
 /* Declare and export component */
 export default class App extends Component<{}> {
-  render() {
-    return (
-      <Provider store={store}>
-        <Location />
-      </Provider>
-    )
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <Location/>
+            </Provider>
+        )
+    }
 }
